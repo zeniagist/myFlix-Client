@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieCard from '../movie-card/movie-card';
+import { useHistory } from "react-router-dom";
 
 export class MovieView extends React.Component {
 
