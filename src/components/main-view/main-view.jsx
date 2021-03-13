@@ -14,6 +14,7 @@ import {
   Container,
   Row,
   Col,
+  Jumbotron,
 } from 'react-bootstrap';
 
 export class MainView extends React.Component {
@@ -74,10 +75,10 @@ export class MainView extends React.Component {
     const { movies, selectedMovie, user, register } = this.state;
 
     /* If there is no user, the LoginView is rendered*/
-    // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
+    if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
 
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-    // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
     // Before the movies have been loaded
     if (!movies) return <div className="main-view" />;
@@ -125,6 +126,15 @@ export class MainView extends React.Component {
               </Container>
             )}
           </div>
+          <Jumbotron className='text-center'>
+            <h1>myFlix Movie Database</h1>
+            <p>All time favorite movie collection</p>
+          </Jumbotron>
+          <footer className='fixed-bottom bg-dark text-white text-center'>
+            <p className='pt-3'>
+              Coyright &#169; 2021 myFlix. All rights reserved
+            </p>
+          </footer>
         </div>
       </React.Fragment>
     );

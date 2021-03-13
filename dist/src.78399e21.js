@@ -49305,7 +49305,13 @@ function (_React$Component) {
             return _this3.onMovieClick(movie);
           }
         }));
-      }))))));
+      })))), _react.default.createElement(_reactBootstrap.Jumbotron, {
+        className: "text-center"
+      }, _react.default.createElement("h1", null, "myFlix Movie Database"), _react.default.createElement("p", null, "All time favorite movie collection")), _react.default.createElement("footer", {
+        className: "fixed-bottom bg-dark text-white text-center"
+      }, _react.default.createElement("p", {
+        className: "pt-3"
+      }, "Coyright \xA9 2021 myFlix. All rights reserved"))));
     }
   }]);
 
@@ -49409,7 +49415,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59423" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59495" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
