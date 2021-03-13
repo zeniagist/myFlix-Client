@@ -49034,10 +49034,13 @@ function RegisterView(props) {
     className: "register-form"
   }, _react.default.createElement("h1", {
     className: "register-header"
-  }, "Registration Welcome!"), _react.default.createElement(_reactBootstrap.Form.Group, {
+  }, "Welcome to myFlix!"), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicText"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
-    type: "password",
+  }, _react.default.createElement(_reactBootstrap.Form.Label, {
+    size: "lg"
+  }, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "text",
+    size: "lg",
     value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
@@ -49045,8 +49048,11 @@ function RegisterView(props) {
     placeholder: "Enter usename"
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicEmail"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, {
+    size: "lg"
+  }, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "email",
+    size: "lg",
     value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
@@ -49054,8 +49060,11 @@ function RegisterView(props) {
     placeholder: "Enter email"
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicPassword"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, {
+    size: "lg"
+  }, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "password",
+    size: "lg",
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
@@ -49063,8 +49072,11 @@ function RegisterView(props) {
     placeholder: "Enter new password"
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicConfirmPassword"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Confirm Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, {
+    size: "lg"
+  }, "Confirm Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "password",
+    size: "lg",
     value: confirmPassword,
     onChange: function onChange(e) {
       return setConfirmPassword(e.target.value);
@@ -49072,8 +49084,11 @@ function RegisterView(props) {
     placeholder: "Confirm your password"
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBasicDate"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthdate"), _react.default.createElement(_reactBootstrap.Form.Control, {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, {
+    size: "lg"
+  }, "Birthdate"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "date",
+    size: "lg",
     value: birthdate,
     onChange: function onChange(e) {
       return setBirthdate(e.target.value);
@@ -49386,7 +49401,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58142" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58374" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

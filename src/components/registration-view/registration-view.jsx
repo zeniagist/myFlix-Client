@@ -21,47 +21,53 @@ export function RegisterView(props) {
   return (
     <React.Fragment>
       <Form className='register-form'>
-        <h1 className='register-header'>Registration Welcome!</h1>
+        <h1 className='register-header'>Welcome to myFlix!</h1>
+        {/* <h2 className="register-subheader">If you already have a login please click here</h2> */}
         <Form.Group controlId='formBasicText'>
-          <Form.Label>Username</Form.Label>
+          <Form.Label size='lg'>Username</Form.Label>
           <Form.Control
-            type='password'
+            type='text'
+            size='lg'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder='Enter usename'
           />
         </Form.Group>
         <Form.Group controlId='formBasicEmail'>
-          <Form.Label>Email</Form.Label>
+          <Form.Label size='lg'>Email</Form.Label>
           <Form.Control
             type='email'
+            size='lg'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder='Enter email'
           />
         </Form.Group>
         <Form.Group controlId='formBasicPassword'>
-          <Form.Label>Password</Form.Label>
+          <Form.Label size='lg'>Password</Form.Label>
           <Form.Control
             type='password'
+            size='lg'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Enter new password'
           />
         </Form.Group>
         <Form.Group controlId='formBasicConfirmPassword'>
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label size='lg'>Confirm Password</Form.Label>
           <Form.Control
             type='password'
+            size='lg'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder='Confirm your password'
           />
         </Form.Group>
         <Form.Group controlId='formBasicDate'>
-          <Form.Label>Birthdate</Form.Label>
+          <Form.Label size='lg'>Birthdate</Form.Label>
           <Form.Control
             type='date'
+            size='lg'
             value={birthdate}
             onChange={(e) => setBirthdate(e.target.value)}
             placeholder='Enter your birthdate'

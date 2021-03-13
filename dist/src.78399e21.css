@@ -1,3 +1,10 @@
+.register-form {
+  padding: 1% 20%;
+}
+
+.register-header {
+  text-align: center;
+}
 .main-body {
   margin-top: 100px;
   margin-bottom: 250px;
@@ -7,7 +14,8 @@
 }
 
 html, body {
-  font-size: 20px;
+  font-size: 30px;
+  margin: 20px;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */
