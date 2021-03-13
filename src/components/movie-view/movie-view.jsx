@@ -22,13 +22,13 @@ export class MovieView extends React.Component {
       <div className="movie-view">
         <Card>
           <Card.Img className='movie-poster' variant="top" src={movie.ImagePath} />
-          <Card.Title className='label-title'>{movie.Title}</Card.Title>
+          <Card.Title className='movie-title'>{movie.Title}</Card.Title>
           <Card.Body>
-            <Card.Text className='label-body'>{movie.Description}</Card.Text>
-            <Card.Text className='label-body'>Director: {movie.Director.Name}</Card.Text>
-            <Card.Text className='label-body'>Genre: {movie.Genre.Name}</Card.Text>
+            <Card.Text className='movie-body'>{movie.Description}</Card.Text>
+            <Card.Text className='movie-body'>Director: {movie.Director.Name}</Card.Text>
+            <Card.Text className='movie-body'>Genre: {movie.Genre.Name}</Card.Text>
           </Card.Body>
-          <Button className='return-button' variant='dark' onClick={() => onClick(movie)}>Return to Movie List</Button>
+          <Button className='back-button' variant='dark' onClick={() => onClick(movie)}>Return to Movie List</Button>
         </Card>
       </div>
     );

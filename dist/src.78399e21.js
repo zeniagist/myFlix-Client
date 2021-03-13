@@ -48828,15 +48828,15 @@ function (_React$Component) {
         variant: "top",
         src: movie.ImagePath
       }), _react.default.createElement(_reactBootstrap.Card.Title, {
-        className: "label-title"
+        className: "movie-title"
       }, movie.Title), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, {
-        className: "label-body"
+        className: "movie-body"
       }, movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, {
-        className: "label-body"
+        className: "movie-body"
       }, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.Card.Text, {
-        className: "label-body"
+        className: "movie-body"
       }, "Genre: ", movie.Genre.Name)), _react.default.createElement(_reactBootstrap.Button, {
-        className: "return-button",
+        className: "back-button",
         variant: "dark",
         onClick: function onClick() {
           return _onClick(movie);
@@ -49409,7 +49409,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59373" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59423" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

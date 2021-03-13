@@ -28,6 +28,27 @@
 .movie-img {
   padding: 5px;
 }
+.movie-view {
+  margin: 0px 100px;
+}
+
+.movie-poster {
+  width: 20%;
+  margin: 20px auto;
+}
+
+.movie-title {
+  font-size: 4em;
+}
+
+.movie-body {
+  font-size: 1.5em;
+}
+
+.back-button {
+  margin: auto;
+  margin-bottom: 20px;
+}
 .login-form {
   padding: 1% 20%;
 }

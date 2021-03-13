@@ -12,9 +12,6 @@ export class MovieCard extends React.Component {
     return (
       <Card className='movie-card' onClick={() => onClick(movie)} >
         <Card.Img className='movie-img' variant='top' src={movie.ImagePath} />
-        {/* <Card.Body>
-          <Card.Title className='movie-title'>{movie.Title}</Card.Title>
-        </Card.Body> */}
       </Card>
     );
   }
