@@ -74,7 +74,7 @@ export class MainView extends React.Component {
     const { movies, selectedMovie, user, register } = this.state;
 
     /* If there is no user, the LoginView is rendered*/
-    // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
+    if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
 
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
     // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
@@ -83,17 +83,50 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
 
     return (
-      <div className="main-view">
-
-        {/*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/}
-
-        {selectedMovie
-          ? <MovieView movie={selectedMovie} />
-          : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
-          ))
-        }
-      </div>
+      <React.Fragment>
+        <div className='main-view'>
+          <header>
+            <Navbar bg='dark' variant='dark' fixed="top">
+              <Nav>
+                <Nav.Item>
+                  <Nav.Link target='_blank' href='#Home'>Home</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link target='_blank' href='#Directors'>Directors</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link target='_blank' href='#Genres'>Genres</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link className='logout-button' target='_blank' href='#Home'>Logout</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Navbar>
+          </header>
+          <div className='main-body text-center'>
+            {selectedMovie ? (
+              <MovieView
+                movie={selectedMovie}
+                onClick={() => this.onBackClick()}
+              />
+            ) : (
+              <Container>
+                <Row>
+                  {movies.map((movie) => (
+                    <Col xs={12} sm={6} md={4} key={movie._id}>
+                      <MovieCard
+                        key={movie._id}
+                        movie={movie}
+                        onClick={(movie) => this.onMovieClick(movie)}
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              </Container>
+            )}
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

@@ -1,5 +1,13 @@
+.main-body {
+  margin-top: 100px;
+  margin-bottom: 250px;
+}
 .my-flix {
   color: steelblue;
+}
+
+html, body {
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */

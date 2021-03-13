@@ -49230,8 +49230,12 @@ function (_React$Component) {
           user = _this$state.user,
           register = _this$state.register;
       /* If there is no user, the LoginView is rendered*/
-      // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
 
+      if (!register) return _react.default.createElement(_registrationView.RegisterView, {
+        onRegister: function onRegister(register) {
+          return _this3.onRegister(register);
+        }
+      });
       /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
       // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
       // Before the movies have been loaded
@@ -49239,19 +49243,46 @@ function (_React$Component) {
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
-      return _react.default.createElement("div", {
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
         className: "main-view"
+      }, _react.default.createElement("header", null, _react.default.createElement(_reactBootstrap.Navbar, {
+        bg: "dark",
+        variant: "dark",
+        fixed: "top"
+      }, _react.default.createElement(_reactBootstrap.Nav, null, _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        target: "_blank",
+        href: "#Home"
+      }, "Home")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        target: "_blank",
+        href: "#Directors"
+      }, "Directors")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        target: "_blank",
+        href: "#Genres"
+      }, "Genres")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        className: "logout-button",
+        target: "_blank",
+        href: "#Home"
+      }, "Logout"))))), _react.default.createElement("div", {
+        className: "main-body text-center"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie
-      }) : movies.map(function (movie) {
-        return _react.default.createElement(_movieCard.MovieCard, {
+        movie: selectedMovie,
+        onClick: function onClick() {
+          return _this3.onBackClick();
+        }
+      }) : _react.default.createElement(_reactBootstrap.Container, null, _react.default.createElement(_reactBootstrap.Row, null, movies.map(function (movie) {
+        return _react.default.createElement(_reactBootstrap.Col, {
+          xs: 12,
+          sm: 6,
+          md: 4,
+          key: movie._id
+        }, _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
           movie: movie,
           onClick: function onClick(movie) {
             return _this3.onMovieClick(movie);
           }
-        });
-      }));
+        }));
+      }))))));
     }
   }]);
 
@@ -49355,7 +49386,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57980" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58142" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
