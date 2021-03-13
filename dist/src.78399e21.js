@@ -48719,18 +48719,14 @@ function (_React$Component) {
           _onClick = _this$props.onClick;
       return _react.default.createElement(_reactBootstrap.Card, {
         className: "movie-card",
-        border: "info"
+        onClick: function onClick() {
+          return _onClick(movie);
+        }
       }, _react.default.createElement(_reactBootstrap.Card.Img, {
         className: "movie-img",
         variant: "top",
         src: movie.ImagePath
-      }), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), _react.default.createElement(_reactBootstrap.Button, {
-        className: "more-button",
-        onClick: function onClick() {
-          return _onClick(movie);
-        },
-        variant: "info"
-      }, "See Details")));
+      }));
     }
   }]);
 
@@ -49264,12 +49260,8 @@ function (_React$Component) {
       // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
 
       /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-
-      if (!user) return _react.default.createElement(_loginView.LoginView, {
-        onLoggedIn: function onLoggedIn(user) {
-          return _this3.onLoggedIn(user);
-        }
-      }); // Before the movies have been loaded
+      // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+      // Before the movies have been loaded
 
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
@@ -49417,7 +49409,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58704" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59373" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
