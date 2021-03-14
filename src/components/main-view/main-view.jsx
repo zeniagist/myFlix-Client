@@ -29,18 +29,15 @@ export class MainView extends React.Component {
     };
   }
 
+  // verify user is logged in in local storage
   componentDidMount() {
-    axios
-      .get('https://myflix-zag.herokuapp.com/movies')
-      .then(response => {
-        // never directly mutate state once defined, otherwise component won't update
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
       });
+      this.getMovies(accessToken);
+    }
   }
 
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
@@ -58,10 +55,42 @@ export class MainView extends React.Component {
   }
 
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-  onLoggedIn(user) {
+  onLoggedIn(authData) {
+    console.log(authData);
     this.setState({
-      user
+      user: authData.user.Username,
+      register: true
     });
+
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
+
+  // log out user
+  onLogout() {
+    this.setState(state => ({
+      user: null
+    }));
+
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+  }
+
+  // username token
+  getMovies(token) {
+    axios.get('https://myflix-zag.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   // when clicked, this function sets selectedMovie state back to null, rendering the main-view page on the DOM
@@ -74,11 +103,11 @@ export class MainView extends React.Component {
   render() {
     const { movies, selectedMovie, user, register } = this.state;
 
-    /* If there is no user, the LoginView is rendered*/
-    if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
-
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+
+    /* If there is no user, the LoginView is rendered*/
+    if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
 
     // Before the movies have been loaded
     if (!movies) return <div className="main-view" />;
@@ -99,7 +128,7 @@ export class MainView extends React.Component {
                   <Nav.Link target='_blank' href='#Genres'>Genres</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link className='logout-button' target='_blank' href='#Home'>Logout</Nav.Link>
+                  <Nav.Link className='logout-button' href='#Home' onClick={() => this.onLogout()}>Logout</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Navbar>
@@ -138,5 +167,8 @@ export class MainView extends React.Component {
         </div>
       </React.Fragment>
     );
+
+
   }
 }
+

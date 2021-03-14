@@ -48890,6 +48890,8 @@ require("./login-view.scss");
 
 var _reactBootstrap = require("react-bootstrap");
 
+var _axios = _interopRequireDefault(require("axios"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -48923,14 +48925,19 @@ function LoginView(props) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
-  var handleSubmit = function handleSubmit() {
+  var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    console.log(username, password);
     /* Send a request to the server for authentication */
 
-    /* then call props.onLoggedIn(username) */
-
-    props.onLoggedIn(username);
+    _axios.default.post('https://myflix-zag.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    }).then(function (response) {
+      var data = response.data;
+      props.onLoggedIn(data);
+    }).catch(function (e) {
+      console.log('no such user');
+    });
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Form, {
@@ -48969,7 +48976,7 @@ LoginView.propTypes = {
   onLoggedIn: _propTypes.default.func.isRequired,
   onRegister: _propTypes.default.func
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./login-view.scss":"components/login-view/login-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./login-view.scss":"components/login-view/login-view.scss","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -49196,21 +49203,20 @@ function (_React$Component) {
       register: null
     };
     return _this;
-  }
+  } // verify user is logged in in local storage
+
 
   _createClass(MainView, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var accessToken = localStorage.getItem('token');
 
-      _axios.default.get('https://myflix-zag.herokuapp.com/movies').then(function (response) {
-        // never directly mutate state once defined, otherwise component won't update
-        _this2.setState({
-          movies: response.data
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user')
         });
-      }).catch(function (error) {
-        console.log(error);
-      });
+        this.getMovies(accessToken);
+      }
     }
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
 
@@ -49233,9 +49239,45 @@ function (_React$Component) {
 
   }, {
     key: "onLoggedIn",
-    value: function onLoggedIn(user) {
+    value: function onLoggedIn(authData) {
+      console.log(authData);
       this.setState({
-        user: user
+        user: authData.user.Username,
+        register: true
+      });
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
+    } // log out user
+
+  }, {
+    key: "onLogout",
+    value: function onLogout() {
+      this.setState(function (state) {
+        return {
+          user: null
+        };
+      });
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+    } // username token
+
+  }, {
+    key: "getMovies",
+    value: function getMovies(token) {
+      var _this2 = this;
+
+      _axios.default.get('https://myflix-zag.herokuapp.com/movies', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        // Assign the result to the state
+        _this2.setState({
+          movies: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
       });
     } // when clicked, this function sets selectedMovie state back to null, rendering the main-view page on the DOM
 
@@ -49256,12 +49298,20 @@ function (_React$Component) {
           selectedMovie = _this$state.selectedMovie,
           user = _this$state.user,
           register = _this$state.register;
-      /* If there is no user, the LoginView is rendered*/
-      // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
-
       /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-      // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-      // Before the movies have been loaded
+
+      if (!user) return _react.default.createElement(_loginView.LoginView, {
+        onLoggedIn: function onLoggedIn(user) {
+          return _this3.onLoggedIn(user);
+        }
+      });
+      /* If there is no user, the LoginView is rendered*/
+
+      if (!register) return _react.default.createElement(_registrationView.RegisterView, {
+        onRegister: function onRegister(register) {
+          return _this3.onRegister(register);
+        }
+      }); // Before the movies have been loaded
 
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
@@ -49283,8 +49333,10 @@ function (_React$Component) {
         href: "#Genres"
       }, "Genres")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
         className: "logout-button",
-        target: "_blank",
-        href: "#Home"
+        href: "#Home",
+        onClick: function onClick() {
+          return _this3.onLogout();
+        }
       }, "Logout"))))), _react.default.createElement("div", {
         className: "main-body text-center"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
@@ -49415,7 +49467,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59495" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64992" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
