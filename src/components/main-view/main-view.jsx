@@ -1,6 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+
+
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
@@ -27,6 +31,22 @@ export class MainView extends React.Component {
       user: null,
       register: null
     };
+  }
+
+  // username token
+  getMovies(token) {
+    axios.get('https://myflix-zag.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   // verify user is logged in in local storage
@@ -58,8 +78,7 @@ export class MainView extends React.Component {
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
-      user: authData.user.Username,
-      register: true
+      user: authData.user.Username
     });
 
     localStorage.setItem('token', authData.token);
@@ -77,21 +96,7 @@ export class MainView extends React.Component {
     localStorage.removeItem('token');
   }
 
-  // username token
-  getMovies(token) {
-    axios.get('https://myflix-zag.herokuapp.com/movies', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(response => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+
 
   // when clicked, this function sets selectedMovie state back to null, rendering the main-view page on the DOM
   onBackClick() {
@@ -107,19 +112,20 @@ export class MainView extends React.Component {
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
     /* If there is no user, the LoginView is rendered*/
-    if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
+    // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
 
     // Before the movies have been loaded
     if (!movies) return <div className="main-view" />;
 
     return (
       <React.Fragment>
+
         <div className='main-view'>
           <header>
             <Navbar bg='dark' variant='dark' fixed="top">
               <Nav>
                 <Nav.Item>
-                  <Nav.Link target='_blank' href='#Home'>Home</Nav.Link>
+                  <Nav.Link target='_blank' >Home</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link target='_blank' href='#Directors'>Directors</Nav.Link>
@@ -128,7 +134,7 @@ export class MainView extends React.Component {
                   <Nav.Link target='_blank' href='#Genres'>Genres</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link className='logout-button' href='#Home' onClick={() => this.onLogout()}>Logout</Nav.Link>
+                  <Nav.Link className='logout-button' onClick={() => this.onLogout()}>Logout</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Navbar>
@@ -167,8 +173,6 @@ export class MainView extends React.Component {
         </div>
       </React.Fragment>
     );
-
-
   }
 }
 
