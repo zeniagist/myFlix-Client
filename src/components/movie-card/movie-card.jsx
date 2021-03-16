@@ -23,20 +23,6 @@ export class MovieCard extends React.Component {
   }
 }
 
-// export class MovieCard extends React.Component {
-//   render() {
-//     const { movie } = this.props;
-
-//     return (
-//       <Card className='movie-card'>
-//         <Link to={`/movies/${movie._id}`}>
-//           <Card.Img className='movie-img' variant='top' src={movie.ImagePath} />
-//         </Link>
-//       </Card>
-//     );
-//   }
-// }
-
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,

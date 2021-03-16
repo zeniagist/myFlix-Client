@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Card, Button } from 'react-bootstrap';
 
+import { Link } from "react-router-dom";
+
 import './movie-view.scss';
 
 export class MovieView extends React.Component {
@@ -14,21 +16,32 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, onClick } = this.props;
+    const { movie } = this.props;
 
     if (!movie) return null;
 
     return (
       <div className="movie-view">
-        <Card>
+        <Card className='movie-view-card'>
           <Card.Img className='movie-poster' variant="top" src={movie.ImagePath} />
           <Card.Title className='movie-title'>{movie.Title}</Card.Title>
           <Card.Body>
             <Card.Text className='movie-body'>{movie.Description}</Card.Text>
-            <Card.Text className='movie-body'>Director: {movie.Director.Name}</Card.Text>
-            <Card.Text className='movie-body'>Genre: {movie.Genre.Name}</Card.Text>
+
+            <Card.Text className='movie-body'>
+              Director:
+                <Link to={`/directors/${movie.Director.Name}`} style={{ textDecoration: 'none' }}> {movie.Director.Name}</Link>
+            </Card.Text>
+
+            <Card.Text className='movie-body'>
+              Genre:
+              <Link to={`/genres/${movie.Genre.Name}`} style={{ textDecoration: 'none' }}> {movie.Genre.Name}</Link>
+            </Card.Text>
           </Card.Body>
-          <Button className='back-button' variant='dark' onClick={() => onClick(movie)}>Return to Movie List</Button>
+
+          <Link to={`/`}>
+            <Button className='back-button' variant='dark' >Return to Movie List</Button>
+          </Link>
         </Card>
       </div>
     );
@@ -51,7 +64,7 @@ MovieView.propTypes = {
       Bio: PropTypes.string
     }),
     Featured: PropTypes.bool
-  }).isRequired,
+  }).isRequired
   // props object must contain onClick and it MUST be a function
-  onClick: PropTypes.func.isRequired
+  // onClick: PropTypes.func.isRequired
 };

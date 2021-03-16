@@ -2,6 +2,10 @@
   margin: 0px 100px;
 }
 
+.movie-view-card{
+  border: none;
+}
+
 .movie-poster {
   width: 20%;
   margin: 20px auto;
@@ -9,9 +13,10 @@
 
 .movie-title {
   font-size: 4em;
+  text-align: center;
 }
 
-.movie-body {
+.movie-body, .movie-info {
   font-size: 1.5em;
 }
 

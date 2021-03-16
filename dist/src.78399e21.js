@@ -51806,19 +51806,7 @@ function (_React$Component) {
   }]);
 
   return MovieCard;
-}(_react.default.Component); // export class MovieCard extends React.Component {
-//   render() {
-//     const { movie } = this.props;
-//     return (
-//       <Card className='movie-card'>
-//         <Link to={`/movies/${movie._id}`}>
-//           <Card.Img className='movie-img' variant='top' src={movie.ImagePath} />
-//         </Link>
-//       </Card>
-//     );
-//   }
-// }
-
+}(_react.default.Component);
 
 exports.MovieCard = MovieCard;
 MovieCard.propTypes = {
@@ -51857,6 +51845,8 @@ var _react = _interopRequireDefault(require("react"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactBootstrap = require("react-bootstrap");
+
+var _reactRouterDom = require("react-router-dom");
 
 require("./movie-view.scss");
 
@@ -51904,13 +51894,13 @@ function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          movie = _this$props.movie,
-          _onClick = _this$props.onClick;
+      var movie = this.props.movie;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
-      }, _react.default.createElement(_reactBootstrap.Card, null, _react.default.createElement(_reactBootstrap.Card.Img, {
+      }, _react.default.createElement(_reactBootstrap.Card, {
+        className: "movie-view-card"
+      }, _react.default.createElement(_reactBootstrap.Card.Img, {
         className: "movie-poster",
         variant: "top",
         src: movie.ImagePath
@@ -51920,15 +51910,24 @@ function (_React$Component) {
         className: "movie-body"
       }, movie.Description), _react.default.createElement(_reactBootstrap.Card.Text, {
         className: "movie-body"
-      }, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.Card.Text, {
-        className: "movie-body"
-      }, "Genre: ", movie.Genre.Name)), _react.default.createElement(_reactBootstrap.Button, {
-        className: "back-button",
-        variant: "dark",
-        onClick: function onClick() {
-          return _onClick(movie);
+      }, "Director:", _react.default.createElement(_reactRouterDom.Link, {
+        to: "/directors/".concat(movie.Director.Name),
+        style: {
+          textDecoration: 'none'
         }
-      }, "Return to Movie List")));
+      }, " ", movie.Director.Name)), _react.default.createElement(_reactBootstrap.Card.Text, {
+        className: "movie-body"
+      }, "Genre:", _react.default.createElement(_reactRouterDom.Link, {
+        to: "/genres/".concat(movie.Genre.Name),
+        style: {
+          textDecoration: 'none'
+        }
+      }, " ", movie.Genre.Name))), _react.default.createElement(_reactRouterDom.Link, {
+        to: "/"
+      }, _react.default.createElement(_reactBootstrap.Button, {
+        className: "back-button",
+        variant: "dark"
+      }, "Return to Movie List"))));
     }
   }]);
 
@@ -51952,11 +51951,11 @@ MovieView.propTypes = {
       Bio: _propTypes.default.string
     }),
     Featured: _propTypes.default.bool
-  }).isRequired,
-  // props object must contain onClick and it MUST be a function
-  onClick: _propTypes.default.func.isRequired
+  }).isRequired // props object must contain onClick and it MUST be a function
+  // onClick: PropTypes.func.isRequired
+
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -52492,6 +52491,20 @@ function (_React$Component) {
             }).Director
           });
         }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/genres/:name",
+        render: function render(_ref3) {
+          var match = _ref3.match;
+          if (!movies) return _react.default.createElement("div", {
+            className: "main-view"
+          });
+          return _react.default.createElement(GenreView, {
+            genre: movies.find(function (m) {
+              return m.Genre.Name === match.params.name;
+            }),
+            movies: movies
+          });
+        }
       })));
     }
   }]);
@@ -52596,7 +52609,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57330" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57409" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
