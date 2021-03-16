@@ -26,10 +26,9 @@ export class MainView extends React.Component {
     super();
     // Initial state is set to null
     this.state = {
-      movies: null,
-      selectedMovie: null,
-      user: null,
-      register: null
+      movies: [],
+      selectedMovie: "",
+      user: "",
     };
   }
 
@@ -174,16 +173,25 @@ export class MainView extends React.Component {
   // }
 
   render() {
-    const { movies, user } = this.state;
+    const { movies, user, register } = this.state;
 
 
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
     if (!movies) return <div className="main-view" />;
+
 
     return (
       <Router>
         <div className="main-view">
-          <Route exact path="/" render={() => movies.map(m => <MovieCard key={m._id} movie={m} />)} />
+          <Route exact path="/" render={() => {
+            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+            return movies.map(m => <MovieCard key={m._id} movie={m} />)
+          }
+          } />
+          <Route path="/register" render={() => {
+            if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
+          }} />
+          {/* you keep the rest routes here */}
           <Route path="/movies/:movieId" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
           <Route path="/directors/:name" render={({ match }) => {
             if (!movies) return <div className="main-view" />;

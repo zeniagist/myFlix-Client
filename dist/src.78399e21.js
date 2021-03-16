@@ -52079,11 +52079,13 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _loginView = require("../login-view/login-view");
+var _reactRouterDom = require("react-router-dom");
 
 var _reactBootstrap = require("react-bootstrap");
 
 require("./registration-view.scss");
+
+var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52129,10 +52131,23 @@ function RegisterView(props) {
       birthdate = _useState10[0],
       setBirthdate = _useState10[1];
 
-  var handleSubmit = function handleSubmit(e) {
+  var handleRegister = function handleRegister(e) {
     e.preventDefault();
-    console.log(username, password, confirmPassword, email, birthdate);
-    props.onRegister('test');
+
+    _axios.default.post('https://myflix-zag.herokuapp.com/users', {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
+    }).then(function (response) {
+      var data = response.data;
+      console.log(data);
+      window.open('/', '_self'); // '_self' is necessary so the page will open in the current tab
+
+      alert('You may now log in');
+    }).catch(function (e) {
+      console.log('error registering the user');
+    });
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Form, {
@@ -52201,8 +52216,8 @@ function RegisterView(props) {
     placeholder: "Enter your birthdate"
   })), _react.default.createElement(_reactBootstrap.Button, {
     type: "button",
-    variant: "primary",
-    onClick: handleSubmit
+    variant: "dark",
+    onClick: handleRegister
   }, "Submit")));
 }
 
@@ -52215,7 +52230,7 @@ RegisterView.propTypes = {
   }),
   onRegister: _propTypes.default.func
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","../login-view/login-view":"components/login-view/login-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./registration-view.scss":"components/registration-view/registration-view.scss","axios":"../node_modules/axios/index.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -52285,10 +52300,9 @@ function (_React$Component) {
     _this = _super.call(this); // Initial state is set to null
 
     _this.state = {
-      movies: null,
-      selectedMovie: null,
-      user: null,
-      register: null
+      movies: [],
+      selectedMovie: "",
+      user: ""
     };
     return _this;
   } // username token
@@ -52446,12 +52460,9 @@ function (_React$Component) {
 
       var _this$state = this.state,
           movies = _this$state.movies,
-          user = _this$state.user;
-      if (!user) return _react.default.createElement(_loginView.LoginView, {
-        onLoggedIn: function onLoggedIn(user) {
-          return _this3.onLoggedIn(user);
-        }
-      });
+          user = _this$state.user,
+          register = _this$state.register; // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
@@ -52461,11 +52472,25 @@ function (_React$Component) {
         exact: true,
         path: "/",
         render: function render() {
+          if (!user) return _react.default.createElement(_loginView.LoginView, {
+            onLoggedIn: function onLoggedIn(user) {
+              return _this3.onLoggedIn(user);
+            }
+          });
           return movies.map(function (m) {
             return _react.default.createElement(_movieCard.MovieCard, {
               key: m._id,
               movie: m
             });
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/register",
+        render: function render() {
+          if (!register) return _react.default.createElement(_registrationView.RegisterView, {
+            onRegister: function onRegister(register) {
+              return _this3.onRegister(register);
+            }
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
@@ -52609,7 +52634,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57409" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57716" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

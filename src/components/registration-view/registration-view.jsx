@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { LoginView } from '../login-view/login-view';
-import { Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+import { Form, Button, Container } from 'react-bootstrap';
 
 import './registration-view.scss';
+import axios from 'axios';
 
 export function RegisterView(props) {
   const [username, setUsername] = useState('');
@@ -13,10 +15,23 @@ export function RegisterView(props) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [birthdate, setBirthdate] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    console.log(username, password, confirmPassword, email, birthdate);
-    props.onRegister('test');
+    axios.post('https://myflix-zag.herokuapp.com/users', {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
+    })
+      .then(response => {
+        const data = response.data;
+        console.log(data);
+        window.open('/', '_self'); // '_self' is necessary so the page will open in the current tab
+        alert('You may now log in');
+      })
+      .catch(e => {
+        console.log('error registering the user')
+      });
   };
 
   return (
@@ -74,7 +89,7 @@ export function RegisterView(props) {
             placeholder='Enter your birthdate'
           />
         </Form.Group>
-        <Button type='button' variant='primary' onClick={handleSubmit}>Submit</Button>
+        <Button type='button' variant='dark' onClick={handleRegister}>Submit</Button>
       </Form>
     </React.Fragment>
   );
