@@ -51746,6 +51746,8 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactBootstrap = require("react-bootstrap");
 
+var _reactRouterDom = require("react-router-dom");
+
 require("./movie-card.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -51788,24 +51790,35 @@ function (_React$Component) {
   _createClass(MovieCard, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          movie = _this$props.movie,
-          _onClick = _this$props.onClick;
-      return _react.default.createElement(_reactBootstrap.Card, {
-        className: "movie-card",
-        onClick: function onClick() {
-          return _onClick(movie);
-        }
+      var movie = this.props.movie;
+      return _react.default.createElement("div", {
+        className: "container"
+      }, _react.default.createElement(_reactBootstrap.Card, {
+        className: "movie-card"
+      }, _react.default.createElement(_reactRouterDom.Link, {
+        to: "/movies/".concat(movie._id)
       }, _react.default.createElement(_reactBootstrap.Card.Img, {
-        className: "movie-img",
+        className: "movie-card",
         variant: "top",
         src: movie.ImagePath
-      }));
+      }))));
     }
   }]);
 
   return MovieCard;
-}(_react.default.Component);
+}(_react.default.Component); // export class MovieCard extends React.Component {
+//   render() {
+//     const { movie } = this.props;
+//     return (
+//       <Card className='movie-card'>
+//         <Link to={`/movies/${movie._id}`}>
+//           <Card.Img className='movie-img' variant='top' src={movie.ImagePath} />
+//         </Link>
+//       </Card>
+//     );
+//   }
+// }
+
 
 exports.MovieCard = MovieCard;
 MovieCard.propTypes = {
@@ -51822,11 +51835,11 @@ MovieCard.propTypes = {
       Bio: _propTypes.default.string
     }),
     Featured: _propTypes.default.bool
-  }).isRequired,
-  // props object must contain onClick and it MUST be a function
-  onClick: _propTypes.default.func.isRequired
+  }).isRequired // props object must contain onClick and it MUST be a function
+  // onClick: PropTypes.func.isRequired
+
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -52362,7 +52375,71 @@ function (_React$Component) {
       this.setState({
         selectedMovie: null
       });
-    }
+    } // render() {
+    //   const { movies, selectedMovie, user, register } = this.state;
+    //   /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
+    //   if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    //   /* If there is no user, the LoginView is rendered*/
+    //   // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
+    //   // Before the movies have been loaded
+    //   if (!movies) return <div className="main-view" />;
+    //   return (
+    //     <React.Fragment>
+    //       <div className='main-view'>
+    //         <header>
+    //           <Navbar bg='dark' variant='dark' fixed="top">
+    //             <Nav>
+    //               <Nav.Item>
+    //                 <Nav.Link target='_blank' >Home</Nav.Link>
+    //               </Nav.Item>
+    //               <Nav.Item>
+    //                 <Nav.Link target='_blank' href='#Directors'>Directors</Nav.Link>
+    //               </Nav.Item>
+    //               <Nav.Item>
+    //                 <Nav.Link target='_blank' href='#Genres'>Genres</Nav.Link>
+    //               </Nav.Item>
+    //               <Nav.Item>
+    //                 <Nav.Link className='logout-button' onClick={() => this.onLogout()}>Logout</Nav.Link>
+    //               </Nav.Item>
+    //             </Nav>
+    //           </Navbar>
+    //         </header>
+    //         <div className='main-body text-center'>
+    //           {selectedMovie ? (
+    //             <MovieView
+    //               movie={selectedMovie}
+    //               onClick={() => this.onBackClick()}
+    //             />
+    //           ) : (
+    //             <Container>
+    //               <Row>
+    //                 {movies.map((movie) => (
+    //                   <Col xs={12} sm={6} md={4} key={movie._id}>
+    //                     <MovieCard
+    //                       key={movie._id}
+    //                       movie={movie}
+    //                       onClick={(movie) => this.onMovieClick(movie)}
+    //                     />
+    //                   </Col>
+    //                 ))}
+    //               </Row>
+    //             </Container>
+    //           )}
+    //         </div>
+    //         <Jumbotron className='text-center'>
+    //           <h1>myFlix Movie Database</h1>
+    //           <p>All time favorite movie collection</p>
+    //         </Jumbotron>
+    //         <footer className='fixed-bottom bg-dark text-white text-center'>
+    //           <p className='pt-3'>
+    //             Coyright &#169; 2021 myFlix. All rights reserved
+    //           </p>
+    //         </footer>
+    //       </div>
+    //     </React.Fragment>
+    //   );
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -52370,69 +52447,52 @@ function (_React$Component) {
 
       var _this$state = this.state,
           movies = _this$state.movies,
-          selectedMovie = _this$state.selectedMovie,
-          user = _this$state.user,
-          register = _this$state.register;
-      /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-
+          user = _this$state.user;
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
         }
       });
-      /* If there is no user, the LoginView is rendered*/
-      // if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
-      // Before the movies have been loaded
-
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+      return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement("div", {
         className: "main-view"
-      }, _react.default.createElement("header", null, _react.default.createElement(_reactBootstrap.Navbar, {
-        bg: "dark",
-        variant: "dark",
-        fixed: "top"
-      }, _react.default.createElement(_reactBootstrap.Nav, null, _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
-        target: "_blank"
-      }, "Home")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
-        target: "_blank",
-        href: "#Directors"
-      }, "Directors")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
-        target: "_blank",
-        href: "#Genres"
-      }, "Genres")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
-        className: "logout-button",
-        onClick: function onClick() {
-          return _this3.onLogout();
+      }, _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/",
+        render: function render() {
+          return movies.map(function (m) {
+            return _react.default.createElement(_movieCard.MovieCard, {
+              key: m._id,
+              movie: m
+            });
+          });
         }
-      }, "Logout"))))), _react.default.createElement("div", {
-        className: "main-body text-center"
-      }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie,
-        onClick: function onClick() {
-          return _this3.onBackClick();
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/movies/:movieId",
+        render: function render(_ref) {
+          var match = _ref.match;
+          return _react.default.createElement(_movieView.MovieView, {
+            movie: movies.find(function (m) {
+              return m._id === match.params.movieId;
+            })
+          });
         }
-      }) : _react.default.createElement(_reactBootstrap.Container, null, _react.default.createElement(_reactBootstrap.Row, null, movies.map(function (movie) {
-        return _react.default.createElement(_reactBootstrap.Col, {
-          xs: 12,
-          sm: 6,
-          md: 4,
-          key: movie._id
-        }, _react.default.createElement(_movieCard.MovieCard, {
-          key: movie._id,
-          movie: movie,
-          onClick: function onClick(movie) {
-            return _this3.onMovieClick(movie);
-          }
-        }));
-      })))), _react.default.createElement(_reactBootstrap.Jumbotron, {
-        className: "text-center"
-      }, _react.default.createElement("h1", null, "myFlix Movie Database"), _react.default.createElement("p", null, "All time favorite movie collection")), _react.default.createElement("footer", {
-        className: "fixed-bottom bg-dark text-white text-center"
-      }, _react.default.createElement("p", {
-        className: "pt-3"
-      }, "Coyright \xA9 2021 myFlix. All rights reserved"))));
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/directors/:name",
+        render: function render(_ref2) {
+          var match = _ref2.match;
+          if (!movies) return _react.default.createElement("div", {
+            className: "main-view"
+          });
+          return _react.default.createElement(DirectorView, {
+            director: movies.find(function (m) {
+              return m.Director.Name === match.params.name;
+            }).Director
+          });
+        }
+      })));
     }
   }]);
 
@@ -52536,7 +52596,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56377" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57330" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

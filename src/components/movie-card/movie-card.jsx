@@ -1,21 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Card, CardGroup } from 'react-bootstrap';
+import { Card, Button, Container } from 'react-bootstrap';
+
+import { Link } from "react-router-dom";
 
 import './movie-card.scss';
 
 export class MovieCard extends React.Component {
   render() {
-    const { movie, onClick } = this.props;
+    const { movie } = this.props;
 
     return (
-      <Card className='movie-card' onClick={() => onClick(movie)} >
-        <Card.Img className='movie-img' variant='top' src={movie.ImagePath} />
-      </Card>
+      <div className='container'>
+        <Card className='movie-card'>
+          <Link to={`/movies/${movie._id}`}>
+            <Card.Img className='movie-card' variant="top" src={movie.ImagePath} />
+          </Link>
+        </Card>
+      </div>
     );
   }
 }
+
+// export class MovieCard extends React.Component {
+//   render() {
+//     const { movie } = this.props;
+
+//     return (
+//       <Card className='movie-card'>
+//         <Link to={`/movies/${movie._id}`}>
+//           <Card.Img className='movie-img' variant='top' src={movie.ImagePath} />
+//         </Link>
+//       </Card>
+//     );
+//   }
+// }
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
@@ -31,7 +51,7 @@ MovieCard.propTypes = {
       Bio: PropTypes.string
     }),
     Featured: PropTypes.bool
-  }).isRequired,
+  }).isRequired
   // props object must contain onClick and it MUST be a function
-  onClick: PropTypes.func.isRequired
+  // onClick: PropTypes.func.isRequired
 };

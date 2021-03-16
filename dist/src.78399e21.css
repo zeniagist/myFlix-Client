@@ -1,5 +1,13 @@
+.container {
+  margin: auto;
+}
+
 .movie-card {
-  margin: 10px 0px;
+  width: 50%;
+  float: left;
+  width: fit-content;
+  border: none;
+  margin: 10px 10px;
   position: relative;
   /* For positioning the pseudo-element */
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
@@ -26,7 +34,7 @@
 }
 
 .movie-img {
-  padding: 5px;
+  border-radius: 5%;
 }
 .movie-view {
   margin: 0px 100px;
@@ -72,7 +80,7 @@
 }
 
 html, body {
-  font-size: 30px;
+  font-size: 20px;
   margin: 20px;
 }
 
