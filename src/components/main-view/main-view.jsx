@@ -145,18 +145,22 @@ export class MainView extends React.Component {
           {/* you keep the rest routes here */}
           <Route path="/movies/:movieId" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
           <Route path="/directors/:name" render={({ match }) => {
-            if (!movies) return <div className="main-view" />;
-            return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
+            if (!movies.length) return <div className='main-view' />;
+            return <DirectorView director={movies.find((m) => m.Director.Name === match.params.name)} movies={movies} />
           }
           } />
           <Route path="/genres/:name" render={({ match }) => {
-            if (!movies) return <div className="main-view" />;
-            return (
-              <GenreView genre={movies.find(m => m.Genre.Name === match.params.name)} movies={movies} />
-            );
+            if (!movies.length) return <div className='main-view' />;
+            return <GenreView genre={movies.find((m) => m.Genre.Name === match.params.name)} movies={movies} />
           }
           } />
+          <Route exact path='/users/:username' render={({ history }) => {
+            if (!user) return <LoginView onLoggedIn={(data) => this.onLoggedIn(data)} />;
+            if (movies.length === 0) return;
+            return <ProfileView history={history} movies={movies} />
+          }} />
 
+          {/* Jumbotron */}
           <Jumbotron className='text-center'>
             <h1>myFlix Movie Database</h1>
             <p>All time favorite movie collection</p>

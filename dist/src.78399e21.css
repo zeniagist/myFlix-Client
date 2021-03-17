@@ -76,6 +76,24 @@
 .register-header {
   text-align: center;
 }
+.director-view {
+  margin: 30px;
+}
+
+.director-bio {
+  margin: 10px 0px;
+}
+
+.director-card,
+.director-moreMovies {
+  border: 2px solid;
+  margin-top: 10px;
+}
+
+.director-view-movies-flex {
+  width: 50%;
+  align-self: center;
+}
 .main-body {
   margin-top: 100px;
   margin-bottom: 250px;
