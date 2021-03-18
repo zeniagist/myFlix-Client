@@ -27,15 +27,16 @@ export class DirectorView extends React.Component {
     return (
       <div className='director-view'>
         <Container>
-          <Card className='director-card' border='info'>
+          <Card className='director-card'>
             <Card.Body>
-              <Card.Title>{director.Director.Name}</Card.Title>
+              <Card.Title className='director-name'>{director.Director.Name}</Card.Title>
+              <Card.Text className='director-space'>~</Card.Text>
               <Card.Text className='director-bio'>{director.Director.Bio}</Card.Text>
             </Card.Body>
           </Card>
           <Card className='director-moreMovies' border='info'>
             <Card.Body>
-              <Card.Title>Movies by {director.Director.Name}:</Card.Title>
+              <Card.Title className='director-movies'>Movies by {director.Director.Name}:</Card.Title>
               <ListGroup className='director-MovieCard'>
                 <div className='director-view-movies-flex'>
                   {movies.map((movie) => {
@@ -47,7 +48,7 @@ export class DirectorView extends React.Component {
               </ListGroup>
             </Card.Body>
           </Card>
-          <Card.Footer>
+          <Card.Footer className='director-footer'>
             <Link to={`/`}>
               <Button className='returnButton' variant='dark'>Return to Movie List</Button>
             </Link>

@@ -52304,14 +52304,19 @@ function (_React$Component) {
       return _react.default.createElement("div", {
         className: "director-view"
       }, _react.default.createElement(_reactBootstrap.Container, null, _react.default.createElement(_reactBootstrap.Card, {
-        className: "director-card",
-        border: "info"
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, director.Director.Name), _react.default.createElement(_reactBootstrap.Card.Text, {
+        className: "director-card"
+      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
+        className: "director-name"
+      }, director.Director.Name), _react.default.createElement(_reactBootstrap.Card.Text, {
+        className: "director-space"
+      }, "~"), _react.default.createElement(_reactBootstrap.Card.Text, {
         className: "director-bio"
       }, director.Director.Bio))), _react.default.createElement(_reactBootstrap.Card, {
         className: "director-moreMovies",
         border: "info"
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, "Movies by ", director.Director.Name, ":"), _react.default.createElement(_reactBootstrap.ListGroup, {
+      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
+        className: "director-movies"
+      }, "Movies by ", director.Director.Name, ":"), _react.default.createElement(_reactBootstrap.ListGroup, {
         className: "director-MovieCard"
       }, _react.default.createElement("div", {
         className: "director-view-movies-flex"
@@ -52322,7 +52327,9 @@ function (_React$Component) {
             movie: movie
           });
         }
-      }))))), _react.default.createElement(_reactBootstrap.Card.Footer, null, _react.default.createElement(_reactRouterDom.Link, {
+      }))))), _react.default.createElement(_reactBootstrap.Card.Footer, {
+        className: "director-footer"
+      }, _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement(_reactBootstrap.Button, {
         className: "returnButton",
@@ -52744,7 +52751,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64494" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65027" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
