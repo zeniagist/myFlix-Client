@@ -21,7 +21,7 @@ export function RegisterView(props) {
       Username: username,
       Password: password,
       Email: email,
-      Birthday: birthday
+      Birthday: birthdate
     })
       .then(response => {
         const data = response.data;
@@ -90,6 +90,9 @@ export function RegisterView(props) {
           />
         </Form.Group>
         <Button type='button' variant='dark' onClick={handleRegister}>Submit</Button>
+        <Link to={`/register`}>
+          <Button type='button' variant='info'>Not Registered?</Button>
+        </Link>
       </Form>
     </React.Fragment>
   );
