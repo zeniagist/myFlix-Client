@@ -67,9 +67,15 @@
   border: none;
 }
 
-.director-view-movies-flex {
+.director-view-movies {
   width: 50%;
   align-self: center;
+}
+
+@media all and (max-width: 768px) {
+  .director-view-movies {
+    width: 100%;
+  }
 }
 
 .director-footer{
