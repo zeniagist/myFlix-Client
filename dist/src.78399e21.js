@@ -51823,9 +51823,7 @@ MovieCard.propTypes = {
       Bio: _propTypes.default.string
     }),
     Featured: _propTypes.default.bool
-  }).isRequired // props object must contain onClick and it MUST be a function
-  // onClick: PropTypes.func.isRequired
-
+  }).isRequired
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -52531,17 +52529,34 @@ function (_React$Component) {
         className: "main-view"
       }, _react.default.createElement("header", null, _react.default.createElement(_reactBootstrap.Navbar, {
         bg: "dark",
+        expand: "lg",
+        fixed: "top",
+        variant: "dark"
+      }, _react.default.createElement(_reactBootstrap.Navbar.Brand, {
+        className: "home",
+        as: _reactRouterDom.Link,
+        to: "/",
+        target: "_self"
+      }, "myFlix"), _react.default.createElement(_reactBootstrap.Navbar.Toggle, {
+        "aria-controls": "basic-navbar-nav"
+      }), _react.default.createElement(_reactBootstrap.Navbar.Collapse, {
+        id: "basic-navbar-nav"
+      }, _react.default.createElement(_reactBootstrap.Nav, {
+        className: "mr-auto"
+      }, _react.default.createElement(_reactBootstrap.Nav.Link, {
+        className: "home",
+        as: _reactRouterDom.Link,
+        to: "/",
+        target: "_self"
+      }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+        className: "profile",
+        as: _reactRouterDom.Link,
+        to: "/users/".concat(user),
+        target: "_self"
+      }, "Profile")), _react.default.createElement(_reactBootstrap.Form, {
+        inline: true
+      }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "dark",
-        fixed: "top"
-      }, _react.default.createElement(_reactBootstrap.Nav, null, _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
-        target: "_blank"
-      }, "Home")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
-        target: "_blank",
-        href: "#Directors"
-      }, "Directors")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
-        target: "_blank",
-        href: "#Genres"
-      }, "Genres")), _react.default.createElement(_reactBootstrap.Nav.Item, null, _react.default.createElement(_reactBootstrap.Nav.Link, {
         className: "logout-button",
         onClick: function onClick() {
           return _this3.onLogout();
@@ -52625,13 +52640,7 @@ function (_React$Component) {
             movies: movies
           });
         }
-      }), _react.default.createElement(_reactBootstrap.Jumbotron, {
-        className: "text-center"
-      }, _react.default.createElement("h1", null, "myFlix Movie Database"), _react.default.createElement("p", null, "All time favorite movie collection")), _react.default.createElement("footer", {
-        className: "fixed-bottom bg-dark text-white text-center"
-      }, _react.default.createElement("p", {
-        className: "pt-3"
-      }, "Coyright \xA9 2021 myFlix. All rights reserved"))));
+      })));
     }
   }]);
 
@@ -52735,7 +52744,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61742" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64494" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

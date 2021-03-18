@@ -19,7 +19,11 @@ import {
   Container,
   Row,
   Col,
+  Form,
   Jumbotron,
+  NavDropdown,
+  Button,
+  FormControl
 } from 'react-bootstrap';
 
 export class MainView extends React.Component {
@@ -116,21 +120,18 @@ export class MainView extends React.Component {
         <div className="main-view">
           {/* Navbar */}
           <header>
-            <Navbar bg='dark' variant='dark' fixed="top">
-              <Nav>
-                <Nav.Item>
-                  <Nav.Link target='_blank' >Home</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link target='_blank' href='#Directors'>Directors</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link target='_blank' href='#Genres'>Genres</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link className='logout-button' onClick={() => this.onLogout()}>Logout</Nav.Link>
-                </Nav.Item>
-              </Nav>
+            <Navbar bg="dark" expand="lg" fixed="top" variant='dark'>
+              <Navbar.Brand className='home' as={Link} to={`/`} target='_self'>myFlix</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                  <Nav.Link className='home' as={Link} to={`/`} target='_self'>Home</Nav.Link>
+                  <Nav.Link className='profile' as={Link} to={`/users/${user}`} target='_self'>Profile</Nav.Link>
+                </Nav>
+                <Form inline>
+                  <Button variant="dark" className='logout-button' onClick={() => this.onLogout()}>Logout</Button>
+                </Form>
+              </Navbar.Collapse>
             </Navbar>
           </header>
           {/* Routes */}
@@ -159,18 +160,6 @@ export class MainView extends React.Component {
             if (movies.length === 0) return;
             return <ProfileView history={history} movies={movies} />
           }} />
-
-          {/* Jumbotron */}
-          <Jumbotron className='text-center'>
-            <h1>myFlix Movie Database</h1>
-            <p>All time favorite movie collection</p>
-          </Jumbotron>
-          {/* Footer */}
-          <footer className='fixed-bottom bg-dark text-white text-center'>
-            <p className='pt-3'>
-              Coyright &#169; 2021 myFlix. All rights reserved
-            </p>
-          </footer>
         </div>
       </Router>
     );
