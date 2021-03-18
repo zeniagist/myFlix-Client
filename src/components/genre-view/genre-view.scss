@@ -69,12 +69,12 @@
 }
 
 .genre-view-movies {
-  width: 50%;
+  width: 75%;
   align-self: center;
 }
 
 @media all and (max-width: 768px) {
   .genre-view-movies {
-    width: 100%;
+    width: 50%;
   }
 }
