@@ -90,6 +90,11 @@ export function RegisterView(props) {
           />
         </Form.Group>
         <Button type='button' variant='dark' onClick={handleRegister}>Submit</Button>
+        <Link to={`/login`}>
+          <Button className='login-button' type='button' variant='warning'>
+            Login
+          </Button>
+        </Link>
       </Form>
     </React.Fragment>
   );

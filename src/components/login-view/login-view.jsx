@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from "react-router-dom";
+
 import './login-view.scss';
 
 // react-bootstrap
@@ -53,6 +55,11 @@ export function LoginView(props) {
         <Button onClick={handleSubmit} variant='primary' type='submit'>
           Submit
         </Button>
+        <Link to={`/register`}>
+          <Button className='register-button' type='button' variant='warning'>
+            Not Registered?
+          </Button>
+        </Link>
       </Form>
     </React.Fragment>
   );

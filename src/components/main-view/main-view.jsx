@@ -134,12 +134,18 @@ export class MainView extends React.Component {
               </Navbar.Collapse>
             </Navbar>
           </header>
-          {/* Routes */}
+          {/* HomeView - working on the styling of this page, will be login page for now */}
           <Route exact path="/" render={() => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
             return movies.map(m => <MovieCard key={m._id} movie={m} />)
           }
           } />
+          <Route exact path="/login" render={() => {
+            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+            return movies.map(m => <MovieCard key={m._id} movie={m} />)
+          }
+          } />
+
           <Route path="/register" render={() => {
             if (!register) return <RegisterView onRegister={(register) => this.onRegister(register)} />
           }} />
