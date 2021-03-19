@@ -52049,7 +52049,12 @@ function LoginView(props) {
     onClick: handleSubmit,
     variant: "primary",
     type: "submit"
-  }, "Submit")));
+  }, "Submit"), _react.default.createElement(Link, {
+    to: "/register"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    type: "button",
+    variant: "info"
+  }, "Not Registered?"))));
 }
 
 LoginView.propTypes = {
@@ -52136,7 +52141,7 @@ function RegisterView(props) {
       Username: username,
       Password: password,
       Email: email,
-      Birthday: birthday
+      Birthday: birthdate
     }).then(function (response) {
       var data = response.data;
       console.log(data);
@@ -52216,7 +52221,12 @@ function RegisterView(props) {
     type: "button",
     variant: "dark",
     onClick: handleRegister
-  }, "Submit")));
+  }, "Submit"), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/register"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    type: "button",
+    variant: "info"
+  }, "Not Registered?"))));
 }
 
 RegisterView.propTypes = {
@@ -53256,7 +53266,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50321" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50700" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
