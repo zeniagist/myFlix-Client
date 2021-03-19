@@ -21,7 +21,7 @@ export function RegisterView(props) {
       Username: username,
       Password: password,
       Email: email,
-      Birthday: birthday
+      Birthday: birthdate
     })
       .then(response => {
         const data = response.data;
@@ -38,7 +38,10 @@ export function RegisterView(props) {
     <React.Fragment>
       <Form className='register-form'>
         <h1 className='register-header'>Welcome to myFlix!</h1>
-        {/* <h2 className="register-subheader">If you already have a login please click here</h2> */}
+        <p className="register-header">
+          Register or login
+          <Link to={`/login`}> here</Link>
+        </p>
         <Form.Group controlId='formBasicText'>
           <Form.Label size='lg'>Username</Form.Label>
           <Form.Control
@@ -89,10 +92,11 @@ export function RegisterView(props) {
             placeholder='Enter your birthdate'
           />
         </Form.Group>
-        <Button type='button' variant='dark' onClick={handleRegister}>Submit</Button>
+        <Button type='button' variant='success' onClick={handleRegister}>Submit</Button>
+        <br />
         <Link to={`/login`}>
-          <Button className='login-button' type='button' variant='warning'>
-            Login
+          <Button className='login-button' type='button' variant='dark'>
+            Already Registered?
           </Button>
         </Link>
       </Form>
