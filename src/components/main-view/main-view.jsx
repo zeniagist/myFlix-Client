@@ -135,7 +135,7 @@ export class MainView extends React.Component {
             </Navbar>
           </header>
           {/* Routes */}
-          <Route exact path={['/', '/login']} render={() => {
+          <Route exact path="/" render={() => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
             return movies.map(m => <MovieCard key={m._id} movie={m} />)
           }

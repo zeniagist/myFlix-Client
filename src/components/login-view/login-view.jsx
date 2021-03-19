@@ -53,9 +53,6 @@ export function LoginView(props) {
         <Button onClick={handleSubmit} variant='primary' type='submit'>
           Submit
         </Button>
-        <Link to={`/register`}>
-          <Button type='button' variant='info'>Not Registered?</Button>
-        </Link>
       </Form>
     </React.Fragment>
   );
