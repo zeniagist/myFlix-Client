@@ -39,8 +39,8 @@ export function RegisterView(props) {
       <Form className='register-form'>
         <h1 className='register-header'>Welcome to myFlix!</h1>
         <p className="register-header">
-          Register or login
-          <Link to={`/login`}> here</Link>
+          Login in&nbsp;
+          <Link to={`/login`}>here</Link>
         </p>
         <Form.Group controlId='formBasicText'>
           <Form.Label size='lg'>Username</Form.Label>

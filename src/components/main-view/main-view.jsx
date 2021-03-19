@@ -126,10 +126,16 @@ export class MainView extends React.Component {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                   <Nav.Link className='home' as={Link} to={`/`} target='_self'>Home</Nav.Link>
-                  <Nav.Link className='profile' as={Link} to={`/users/${user}`} target='_self'>Profile</Nav.Link>
+                  {user &&
+                    <Nav.Link className='profile' as={Link} to={`/users/${user}`} target='_self'>Profile</Nav.Link>
+                  }
                 </Nav>
                 <Form inline>
-                  <Button variant="dark" className='logout-button' onClick={() => this.onLogout()}>Logout</Button>
+                  {user &&
+                    <Link to={`/`}>
+                      <Button variant="dark" className='logout-button' onClick={() => this.onLogout()}>Logout</Button>
+                    </Link>
+                  }
                 </Form>
               </Navbar.Collapse>
             </Navbar>
