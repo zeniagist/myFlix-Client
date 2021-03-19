@@ -53085,7 +53085,7 @@ function (_React$Component) {
         }
       }, "Logout"))))), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
-        path: "/",
+        path: ['/', '/login'],
         render: function render() {
           if (!user) return _react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
@@ -53266,7 +53266,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50700" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50777" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
