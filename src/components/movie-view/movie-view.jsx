@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 import { Card, Button } from 'react-bootstrap';
 
-import { Link } from "react-router-dom";
-
+import axios from 'axios';
 import './movie-view.scss';
 
 export class MovieView extends React.Component {
@@ -14,6 +14,22 @@ export class MovieView extends React.Component {
 
     this.state = {};
   }
+
+  addFavorite = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+
+    axios.post(`https://myflix-zag.herokuapp.com/users/${user}/Movies/${this.props.movie._id}`, {}, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        alert(`${this.props.movie.Title} added to Favorites List`)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   render() {
     const { movie } = this.props;
@@ -37,8 +53,11 @@ export class MovieView extends React.Component {
               Genre:
               <Link to={`/genres/${movie.Genre.Name}`} style={{ textDecoration: 'none' }}> {movie.Genre.Name}</Link>
             </Card.Text>
-          </Card.Body>
 
+            <Link to={``}>
+              <Button className='addFavButton' variant='success' onClick={this.addFavorite}> Add Movie to Favorites</Button>
+            </Link>
+          </Card.Body>
           <Link to={`/`}>
             <Button className='back-button' variant='dark' >Return to Movie List</Button>
           </Link>
@@ -64,7 +83,10 @@ MovieView.propTypes = {
       Bio: PropTypes.string
     }),
     Featured: PropTypes.bool
-  }).isRequired
+  }),
+  user: PropTypes.shape({
+    username: PropTypes.string
+  })
   // props object must contain onClick and it MUST be a function
   // onClick: PropTypes.func.isRequired
 };
