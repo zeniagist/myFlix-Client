@@ -14,6 +14,7 @@ import { RegisterView } from '../registration-view/registration-view'
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
+import Config from '../../config';
 
 import './main-view.scss'
 
@@ -43,7 +44,7 @@ export class MainView extends React.Component {
 
   // username token
   getMovies(token) {
-    axios.get('https://myflix-zag.herokuapp.com/movies', {
+    axios.get(`${Config.API_URL}/movies`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {

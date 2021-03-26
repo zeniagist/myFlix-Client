@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import './login-view.scss';
+import Config from '../../config';
 
 // react-bootstrap
 import { Form, Button, Container, Col } from 'react-bootstrap';
@@ -19,7 +20,7 @@ export function LoginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     /* Send a request to the server for authentication */
-    axios.post('https://myflix-zag.herokuapp.com/login', {
+    axios.post(`${Config.API_URL}/login`, {
       Username: username,
       Password: password
     })
@@ -76,3 +77,10 @@ LoginView.propTypes = {
   onLoggedIn: PropTypes.func.isRequired,
   onRegister: PropTypes.func
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  userLoginRequested: () => dispatch(userLoginRequested()),
+  loginUser: (username, password) => dispatch(loginUser(username, password)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginView);

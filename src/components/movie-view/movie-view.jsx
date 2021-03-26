@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { Card, Button } from 'react-bootstrap';
 
 import axios from 'axios';
+import Config from '../../config'
+
 import './movie-view.scss';
 
 export class MovieView extends React.Component {
@@ -20,7 +22,7 @@ export class MovieView extends React.Component {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
 
-    axios.post(`https://myflix-zag.herokuapp.com/users/${user}/Movies/${this.props.movie._id}`, {}, {
+    axios.post(`${Config.API_URL}/users/${user}/Movies/${this.props.movie._id}`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {

@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
+import Config from '../../config'
 
 import './profile-view.scss';
 import {
@@ -39,7 +40,7 @@ export class ProfileView extends React.Component {
   getUser(token) {
     const username = localStorage.getItem('user');
     axios
-      .get(`https://myflix-zag.herokuapp.com/users/${username}`, {
+      .get(`${Config.API_URL}/users/${username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -62,7 +63,7 @@ export class ProfileView extends React.Component {
     const token = localStorage.getItem('token');
 
     axios
-      .delete(`https://myflix-zag.herokuapp.com/users/${username}/Movies/${movie}`, {
+      .delete(`${Config.API_URL}/users/${username}/Movies/${movie}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
@@ -95,7 +96,7 @@ export class ProfileView extends React.Component {
 
     axios({
       method: 'put',
-      url: `https://myflix-zag.herokuapp.com/users/${username}`,
+      url: `${Config.API_URL}/users/${username}`,
       headers: { Authorization: `Bearer ${token}` },
       data: {
         Username: newUsername ? newUsername : this.state.Username,
@@ -146,7 +147,7 @@ export class ProfileView extends React.Component {
     const username = localStorage.getItem('user');
 
     axios
-      .delete(`https://myflix-zag.herokuapp.com/users/${username}`, {
+      .delete(`${Config.API_URL}/users/${username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {

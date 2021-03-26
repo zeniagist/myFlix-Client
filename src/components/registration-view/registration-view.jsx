@@ -7,6 +7,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 
 import './registration-view.scss';
 import axios from 'axios';
+import Config from '../../config'
 
 export function RegisterView(props) {
   const [username, setUsername] = useState('');
@@ -17,7 +18,7 @@ export function RegisterView(props) {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    axios.post('https://myflix-zag.herokuapp.com/users', {
+    axios.post(`${Config.API_URL}/users`, {
       Username: username,
       Password: password,
       Email: email,
