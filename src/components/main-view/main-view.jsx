@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
+import { setMovies } from '../../actions/actions';
+
+import MoviesList from '../movies-list/movies-list';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
@@ -44,9 +47,10 @@ export class MainView extends React.Component {
     })
       .then(response => {
         // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
+        // this.setState({
+        //   movies: response.data
+        // });
+        this.props.setMovies(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -108,7 +112,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user, register } = this.state;
+    let { movies } = this.props;
+    let { user, register } = this.state;
 
 
     // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
@@ -176,6 +181,10 @@ export class MainView extends React.Component {
       </Router>
     );
   }
-
 }
 
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+
+export default connect(mapStateToProps, { setMovies })(MainView);
