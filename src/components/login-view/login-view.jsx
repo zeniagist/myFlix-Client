@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 
 import { Link } from "react-router-dom";
 
+// Redux
+import { connect } from 'react-redux';
+
 import './login-view.scss';
 
 // react-bootstrap
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 export function LoginView(props) {
@@ -33,7 +36,7 @@ export function LoginView(props) {
     <React.Fragment>
       <Form className='login-form'>
         <h1 className='login-header'>myFlix Login</h1>
-        <Form.Group controlId='formBasicEmail'>
+        <Form.Group controlId='loginUsername'>
           <Form.Label>Username</Form.Label>
           <Form.Control
             type='text'
