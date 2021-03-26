@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import { setMovies } from '../../actions/actions';
 
