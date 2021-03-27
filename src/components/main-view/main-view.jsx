@@ -127,14 +127,13 @@ export class MainView extends React.Component {
         <div className="main-view">
           {/* Navbar */}
           <header>
-            <Navbar bg="dark" expand="lg" fixed="top" variant='dark'>
+            <Navbar expand="lg" fixed="top" variant='light' bg="light">
               <Navbar.Brand className='home' as={Link} to={`/`} target='_self'>myFlix</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                  <Nav.Link className='home' as={Link} to={`/`} target='_self'>Home</Nav.Link>
                   {user &&
-                    <Nav.Link className='profile' as={Link} to={`/users/${user}`} target='_self'>Profile</Nav.Link>
+                    <Nav.Link className='profile' as={Link} to={`/users/${user}`} target='_self'>My Account</Nav.Link>
                   }
                 </Nav>
                 <Form inline>

@@ -35,7 +35,77 @@ export function LoginView(props) {
 
   return (
     <React.Fragment>
-      <Form className='login-form'>
+      <Container>
+        <Col
+          md={{ span: 6, offset: 3 }}
+          lg={{ span: 4, offset: 4 }}
+          className='bg-white rounded p-3'
+        >
+          {/* Header */}
+          <h1 className='text-dark text-center h3 mb-4'>
+            Welcome to{' '}
+            <span className='font-italic'>
+              my<span className='text-primary'></span>Flix
+            </span>
+          </h1>
+          <h2 className='text-left h6 text-dark font-weight-bold mb-2'>
+            Login to Your Account
+          </h2>
+          <Form className='mb-2'>
+            {/* Username */}
+            <Form.Group className='mb-2' controlId='loginUsername'>
+              <Form.Control
+                autoFocus
+                type='text'
+                placeholder='Username'
+                name='username'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type='invalid'>
+                Please enter your username
+                </Form.Control.Feedback>
+            </Form.Group>
+            {/* Password */}
+            <Form.Group controlId='loginPassword' className='mb-2'>
+              <Form.Control
+                type='password'
+                placeholder='Password'
+                name='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type='invalid'>
+                Please enter your password
+              </Form.Control.Feedback>
+            </Form.Group>
+            {/* Login Button */}
+            <Button
+              type='submit'
+              className='w-100 btn-lg mb-3 btn'
+              onClick={handleSubmit}
+              variant="dark"
+            >
+              Login
+            </Button>
+          </Form>
+          {/* Register User */}
+          <small className='text-muted text-center d-block'>
+            Not a member yet?
+            <Link to='/register' style={{ textDecoration: 'none' }}>
+              <span className='register text-primary ml-2 link'>
+                Sign up for free
+              </span>
+            </Link>
+          </small>
+
+        </Col>
+      </Container>
+      {/* <Form className='login-form'>
         <h1 className='login-header'>myFlix Login</h1>
         <Form.Group controlId='loginUsername'>
           <Form.Label>Username</Form.Label>
@@ -64,7 +134,7 @@ export function LoginView(props) {
             Not Registered?
           </Button>
         </Link>
-      </Form>
+      </Form> */}
     </React.Fragment>
   );
 }

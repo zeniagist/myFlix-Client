@@ -8,4 +8,10 @@ html, body{
   font-size: 20px;
   margin-top: 20px;
   font-family: "Cormorant Garamond", serif;
+  background: rgb(0,0,0);
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(67,67,67,1) 35%);
+}
+
+.btn{
+  background-color: #8E0E00;
 }
