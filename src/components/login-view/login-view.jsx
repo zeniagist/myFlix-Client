@@ -106,36 +106,6 @@ export function LoginView(props) {
 
         </Col>
       </Container>
-      {/* <Form className='login-form'>
-        <h1 className='login-header'>myFlix Login</h1>
-        <Form.Group controlId='loginUsername'>
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type='text'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder='username'
-          />
-        </Form.Group>
-        <Form.Group controlId='formBasicPassword'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type='password'
-            placeholder='password'
-          />
-        </Form.Group>
-        <Button onClick={handleSubmit} variant='primary' type='submit'>
-          Submit
-        </Button>
-        <Link to={`/register`}>
-          <Button className='register-button' type='button' variant='warning'>
-            Not Registered?
-          </Button>
-        </Link>
-      </Form> */}
     </React.Fragment>
   );
 }

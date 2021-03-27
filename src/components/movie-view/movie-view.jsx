@@ -15,7 +15,7 @@ export class MovieView extends React.Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = { FavoriteMovies: [] };
   }
 
   // add favorite movie
@@ -29,6 +29,7 @@ export class MovieView extends React.Component {
     })
       .then(response => {
         alert(`${this.props.movie.Title} added to Favorites List`)
+        window.location.pathname = `/users/${user}`
       })
       .catch(function (error) {
         console.log(error);
@@ -37,7 +38,7 @@ export class MovieView extends React.Component {
 
   render() {
     const { movie } = this.props;
-
+    const { FavoriteMovies } = this.state;
     if (!movie) return null;
 
     return (
@@ -53,9 +54,10 @@ export class MovieView extends React.Component {
               {movie.Title || ''}
             </span>
           </div>
-          <Link to={``}>
-            <Button className='btn movie-view-btn' onClick={this.addFavorite}> Add to Favorites</Button>
-          </Link>
+          <Button className='btn movie-view-btn' onClick={this.addFavorite}> Add to Favorites
+            </Button>
+
+
           {/* Movie Description */}
           <div className='description mb-2'>
             <span>{movie.Description || ''}</span>
@@ -83,30 +85,6 @@ export class MovieView extends React.Component {
             </Link>
           </div>
         </div>
-        {/* <Card className='movie-view-card'>
-          <Card.Img className='movie-poster' variant="top" src={movie.ImagePath} />
-          <Card.Title className='movie-title'>{movie.Title}</Card.Title>
-          <Card.Body>
-            <Card.Text className='movie-body'>{movie.Description}</Card.Text>
-
-            <Card.Text className='movie-body'>
-              Director:
-                <Link to={`/directors/${movie.Director.Name}`} style={{ textDecoration: 'none' }}> {movie.Director.Name}</Link>
-            </Card.Text>
-
-            <Card.Text className='movie-body'>
-              Genre:
-              <Link to={`/genres/${movie.Genre.Name}`} style={{ textDecoration: 'none' }}> {movie.Genre.Name}</Link>
-            </Card.Text>
-
-            <Link to={``}>
-              <Button className='addFavButton' variant='success' onClick={this.addFavorite}> Add Movie to Favorites</Button>
-            </Link>
-          </Card.Body>
-          <Link to={`/`}>
-            <Button className='back-button' variant='dark' >Return to Movie List</Button>
-          </Link>
-        </Card> */}
       </div>
     );
   }
@@ -130,6 +108,11 @@ MovieView.propTypes = {
     Featured: PropTypes.bool
   }),
   user: PropTypes.shape({
+    FavoriteMovies: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string
+      })
+    ),
     username: PropTypes.string
   })
   // props object must contain onClick and it MUST be a function
