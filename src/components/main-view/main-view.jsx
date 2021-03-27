@@ -27,8 +27,7 @@ import {
   Form,
   Jumbotron,
   NavDropdown,
-  Button,
-  FormControl
+  Button
 } from 'react-bootstrap';
 
 export class MainView extends React.Component {
@@ -133,7 +132,7 @@ export class MainView extends React.Component {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                   {user &&
-                    <Nav.Link className='profile' as={Link} to={`/users/${user}`} target='_self'>My Account</Nav.Link>
+                    <Nav.Link as={Link} to={`/users/${user}`} target='_self' className='navbar-item'>My Account</Nav.Link>
                   }
                 </Nav>
                 <Form inline>

@@ -4,10 +4,10 @@ background: linear-gradient(to right, #dd1818, #333333); /* W3C, IE 10+/ Edge, F
 
 }
 
-.navbar-brand{
+.navbar-brand, .navbar-item{
   color: white !important;
 }
 
-.navbar-brand:hover{
+.navbar-brand:hover, .navbar-item:hover{
   color: black !important;
 }

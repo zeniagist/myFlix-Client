@@ -9,8 +9,9 @@
   border: none;
   margin: 10px 10px;
   position: relative; /* For positioning the pseudo-element */
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.3);
   cursor: pointer;
+  background-color: rgba($color: #944d45, $alpha: 0.5);
 }
 
 .movie-card::before{
@@ -23,7 +24,7 @@
   left: 0;
 
   /* Create the box shadow at expanded size. */
-  box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 50px 0 rgba(255, 255, 255, 0.5);
 
   /* Hidden by default. */
   opacity: 0;
