@@ -127,8 +127,8 @@ export class MainView extends React.Component {
         <div className="main-view">
           {/* Navbar */}
           <header>
-            <Navbar expand="lg" fixed="top" variant='light' bg="light">
-              <Navbar.Brand className='home' as={Link} to={`/`} target='_self'>myFlix</Navbar.Brand>
+            <Navbar expand="lg" fixed="top" className='nav-bar'>
+              <Navbar.Brand className='app-name navbar-brand' as={Link} to={`/`} target='_self'>myFlix</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

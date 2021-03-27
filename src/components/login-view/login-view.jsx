@@ -44,13 +44,14 @@ export function LoginView(props) {
           {/* Header */}
           <h1 className='text-dark text-center h3 mb-4'>
             Welcome to{' '}
-            <span className='font-italic'>
-              my<span className='text-primary'></span>Flix
+            <span className='font-italic app-name'>
+              myFlix
             </span>
           </h1>
           <h2 className='text-left h6 text-dark font-weight-bold mb-2'>
             Login to Your Account
           </h2>
+          {/* Login Credentials */}
           <Form className='mb-2'>
             {/* Username */}
             <Form.Group className='mb-2' controlId='loginUsername'>
