@@ -2,7 +2,7 @@
 
 myFlix is a  client-side of a MERN stack web application built using React, built client-side based on existing server-side code (REST API) and MongoDB database. This web application provides users with the access to information about different movies, directors and genres. Users are able to sign up, update personal information, and create a list of their favorite movies. 
 
-(./src/images/movie.jpg)
+![code to be replaced](./src/images/movie.jpg)
 
 ## Quick Start 🚀
 
