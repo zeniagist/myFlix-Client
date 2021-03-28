@@ -14,7 +14,7 @@ import './index.scss';
 
 // Create React Redux Store
 // const store = createStore(moviesApp);
-const store = createStore(moviesApp, devToolsEnhancer());
+const store = createStore(moviesApp);
 
 // Main component (will eventually use all the others)
 class MyFlixApplication extends React.Component {

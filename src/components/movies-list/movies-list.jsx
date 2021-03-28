@@ -14,15 +14,17 @@ function MoviesList(props) {
   let filteredMovies = movies;
 
   if (visibilityFilter !== '') {
-    filteredMovies = movies.filter(m => m.Title.includes(visibilityFilter));
+    filteredMovies = movies.filter(m => m.Title.toLowerCase().includes(visibilityFilter.toLowerCase()));
   }
 
   if (!movies) return <div className="main-view" />;
 
-  return <div className="movies-list">
-    <VisibilityFilterInput visibilityFilter={visibilityFilter} />
-    {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
-  </div>;
+  return (
+    <div className="movies-list">
+      <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+      {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
+    </div>
+  );
 }
 
 export default connect(mapStateToProps)(MoviesList);
