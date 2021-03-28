@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUsers } from '../../actions/actions';
 
 import MoviesList from '../movies-list/movies-list';
 import { MovieCard } from '../movie-card/movie-card';
@@ -19,15 +19,7 @@ import Config from '../../config';
 import './main-view.scss'
 
 import {
-  Navbar,
-  Nav,
-  Container,
-  Row,
-  Col,
-  Form,
-  Jumbotron,
-  NavDropdown,
-  Button
+  Navbar, Nav, Container, Row, Col, Form, Jumbotron, NavDropdown, Button, Card
 } from 'react-bootstrap';
 
 export class MainView extends React.Component {
@@ -37,7 +29,7 @@ export class MainView extends React.Component {
     this.state = {
       movies: [],
       selectedMovie: "",
-      user: "",
+      user: ""
     };
   }
 
@@ -47,10 +39,6 @@ export class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        // Assign the result to the state
-        // this.setState({
-        //   movies: response.data
-        // });
         this.props.setMovies(response.data);
       })
       .catch(function (error) {
@@ -85,7 +73,7 @@ export class MainView extends React.Component {
 
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
   onLoggedIn(authData) {
-    console.log(authData);
+    // console.log(authData);
     this.setState({
       user: authData.user.Username
     });
@@ -105,7 +93,7 @@ export class MainView extends React.Component {
     localStorage.removeItem('token');
   }
 
-  // when clicked, this function sets selectedMovie state back to null, rendering the main-view page on the DOM
+  // selectedMovie state back to null, rendering the main-view page on the DOM
   onBackClick() {
     this.setState({
       selectedMovie: null
@@ -148,12 +136,14 @@ export class MainView extends React.Component {
           {/* HomeView - working on the styling of this page, will be login page for now */}
           <Route exact path="/" render={() => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-            return movies.map(m => <MovieCard key={m._id} movie={m} />)
+            // return movies.map(m => <MovieCard key={m._id} movie={m} />)
+            return (<MoviesList movies={movies} />);
           }
           } />
           <Route exact path="/login" render={() => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-            return movies.map(m => <MovieCard key={m._id} movie={m} />)
+            // return movies.map(m => <MovieCard key={m._id} movie={m} />)
+            return (<MoviesList movies={movies} />);
           }
           } />
 
@@ -183,8 +173,8 @@ export class MainView extends React.Component {
   }
 }
 
-let mapStateToProps = state => {
-  return { movies: state.movies }
+let mapStateToProps = (state) => {
+  return { movies: state.movies, users: state.users }
 }
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps, { setMovies, setUsers })(MainView);

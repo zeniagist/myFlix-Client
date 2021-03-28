@@ -13,9 +13,8 @@ export function setFilter(value) {
 }
 
 // sets user
-export function setUser(value) {
+export function setUsers(value) {
   return {
-    type: SET_USER,
-    value
+    type: SET_USER, value
   }
 }
