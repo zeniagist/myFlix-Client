@@ -241,7 +241,7 @@ export class ProfileView extends React.Component {
 
 
           <Tab className='tab-item' eventKey='delete' title='Delete Profile'>
-            <Card className='update-card' border='danger'>
+            <Card className='update-card'>
               <Card.Title className='profile-title'>Delete Your Profile</Card.Title>
               <Card.Subtitle className='text-muted'>If you delete your account, it cannot be recovered.</Card.Subtitle>
               <Card.Body>
