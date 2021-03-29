@@ -45,8 +45,6 @@ http://localhost:1234/
 
 For more information about each endpoint of the REST API, see *documentation.html*.
 
-## App Info
-
 ### Author
 
 [Zenia Gist](https://zeniagist.com/)
