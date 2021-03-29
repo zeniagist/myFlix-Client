@@ -43,7 +43,7 @@ http://localhost:1234/
 - Allows existing users to update their user info or to delete their account
 - Allows existing users to add or remove movies to/from their list of favorites
 
-For more information about each endpoint of the REST API, see *documentation.hmtl*.
+For more information about each endpoint of the REST API, see *documentation.html*.
 
 ## App Info
 
