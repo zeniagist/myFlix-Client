@@ -15,11 +15,14 @@ export class MovieView extends React.Component {
   constructor() {
     super();
 
-    this.state = { FavoriteMovies: [] };
+    this.state = {
+      FavoriteMovies: [],
+      fav: null,
+    };
   }
 
   // add favorite movie
-  addFavorite = (e) => {
+  addFavorite = (e, movie) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
@@ -29,7 +32,10 @@ export class MovieView extends React.Component {
     })
       .then(response => {
         alert(`${this.props.movie.Title} added to Favorites List`)
-        window.location.pathname = `/users/${user}`
+        // window.location.pathname = `/users/${user}`
+        this.setState({
+          fav: true,
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -38,7 +44,7 @@ export class MovieView extends React.Component {
 
   render() {
     const { movie } = this.props;
-    const { FavoriteMovies } = this.state;
+    const { FavoriteMovies, fav } = this.state;
     if (!movie) return null;
 
     return (
@@ -54,10 +60,7 @@ export class MovieView extends React.Component {
               {movie.Title || ''}
             </span>
           </div>
-          <Button className='btn movie-view-btn' onClick={this.addFavorite}> Add to Favorites
-            </Button>
-
-
+          {!fav && <Button className='btn movie-view-btn' onClick={this.addFavorite}> Add to Favorites </Button>}
           {/* Movie Description */}
           <div className='description mb-2'>
             <span>{movie.Description || ''}</span>
@@ -118,3 +121,9 @@ MovieView.propTypes = {
   // props object must contain onClick and it MUST be a function
   // onClick: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state) => ({
+  movie: state.movies.list
+});
+
+export default connect(mapStateToProps)(MovieView);
