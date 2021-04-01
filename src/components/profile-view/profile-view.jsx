@@ -73,7 +73,7 @@ export class ProfileView extends React.Component {
       })
       .catch(function (error) {
         console.log(error);
-      }).then(() => window.location.reload());
+      });
   }
 
   handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
@@ -116,7 +116,7 @@ export class ProfileView extends React.Component {
         alert('Changes have been saved!');
         localStorage.setItem('user', this.state.Username);
         // this.props.history.push(`/users/${username}`);
-        window.location.reload()
+        // window.location.reload()
         // window.location.pathname = `/users/${username}`
         // console.log(response.data);
 
@@ -157,7 +157,7 @@ export class ProfileView extends React.Component {
         localStorage.removeItem('token');
         alert('Your account has been deleted');
         // this.props.history.push(`/`);
-        window.location.reload()
+        // window.location.reload()
         // window.location.pathname = `/`
       })
       .catch((e) => {
