@@ -9,7 +9,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "parcel build src/index.html",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build --git git"
   },
   "engines": {
     "node": "14.16.0",
