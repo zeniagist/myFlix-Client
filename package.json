@@ -25,6 +25,8 @@
   "homepage": "https://zeniagist.github.io/myflix-client",
   "dependencies": {
     "axios": "^0.21.1",
+    "gh-pages": "^2.0.1",
+    "parcel-bundler": "^1.12.5",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
@@ -32,8 +34,7 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.9",
-    "parcel-bundler": "^1.12.5"
+    "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -41,7 +42,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "cssnano": "^4.1.10",
-    "gh-pages": "^3.1.0",
     "parcel-bundler": "^1.12.5",
     "sass": "^1.32.8"
   }
