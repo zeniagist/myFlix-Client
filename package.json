@@ -22,7 +22,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "homepage": "https://zeniagist..github.io/myflix-client",
+  "homepage": "https://zeniagist.github.io/myflix-client",
   "dependencies": {
     "axios": "^0.21.1",
     "prop-types": "^15.7.2",
