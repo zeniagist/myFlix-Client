@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "react-scripts build",
+    "build": "parcel build src/index.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "parcel build src/index.html",
     "deploy": "gh-pages -d build"
   },
   "engines": {
