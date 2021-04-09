@@ -47,7 +47,7 @@ For more information about each endpoint of the REST API, see *documentation.htm
 
 ### Author
 
-[Zenia Gist](https://zeniagist.com/)
+[Zenia Gist](https://zeniagist.github.io)
 
 ### Version
 
