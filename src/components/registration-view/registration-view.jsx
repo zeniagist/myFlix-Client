@@ -32,7 +32,8 @@ export function RegisterView(props) {
         alert('You may now log in');
       })
       .catch(e => {
-        console.log('error registering the user')
+        console.log('error registering the user');
+        alert(`Error registering user`);
       });
   };
 
