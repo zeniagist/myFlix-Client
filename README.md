@@ -1,10 +1,12 @@
 # myFlix
 
-myFlix is the client-side of a movie database application built using React with existing server-side [database](https://github.com/zeniagist/myFlix-Backend) (REST API) and MongoDB database. 
+myFlix is the client-side of a movie database application built using React with existing server-side (REST API) and MongoDB database. 
 
 This web application provides users with the access to information about different movies, directors and genres. Users are able to sign up, update personal information, and create a list of their favorite movies. 
 
 View the website built with Angular [here](https://github.com/zeniagist/filmFlix).
+
+View the back-end REST API database [here](https://github.com/zeniagist/myFlix-Backend).
 
 ![myFlix-Client](./src/images/movie.JPG)
 
