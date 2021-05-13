@@ -3,6 +3,9 @@
 myFlix is the client-side of a movie database application built using React with existing server-side (REST API) and MongoDB database. 
 
 This web application provides users with the access to information about different movies, directors and genres. Users are able to sign up, update personal information, and create a list of their favorite movies. 
+my-flix-zag.netlify.app/
+
+**See the hosted project [here](https://my-flix-zag.netlify.app/).**
 
 View the website built with Angular [here](https://github.com/zeniagist/filmFlix).
 
