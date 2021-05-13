@@ -11,7 +11,7 @@ View the website built with Angular [here](https://github.com/zeniagist/filmFlix
 
 View the back-end REST API database [here](https://github.com/zeniagist/myFlix-Backend).
 
-![myFlix-Client](./src/images/movie.JPG)
+![myFlix-Client](./src/images/myflixshowcase.gif)
 
 ## Quick Start 🚀
 
