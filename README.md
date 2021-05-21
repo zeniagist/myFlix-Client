@@ -6,7 +6,7 @@ This web application provides users with the access to information about differe
 
 **See the hosted project [here](https://my-flix-zag.netlify.app/).**
 
-View the repository built with Angular [here](https://github.com/zeniagist/filmFlix).
+View the repository built with Angular [here](https://github.com/zeniagist/filmflix).
 
 View the back-end REST API database [here](https://github.com/zeniagist/myFlix-Backend).
 
